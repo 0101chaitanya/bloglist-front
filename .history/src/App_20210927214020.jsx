@@ -60,7 +60,7 @@ const [errorMessage, setErrorMessage] = useState("");
       const blogFormRef = useRef();
     const handleSubmit = async (e) => {
       e.preventDefault();
-       await sendBlog({ ...state, user: user.id });
+      const resBlog = await sendBlog({ ...state, user: user.id });
    const blogs = await getAll();
    setBlogs(blogs);
    setState({
@@ -95,7 +95,7 @@ setUser(null)
       ) : (
         <div>
           <button onClick={LogOut}>Log out</button>
-          <p>{user.username} logged in</p>
+          <p>{user} logged in</p> && (
           <Togglable buttonLabel="add a new blog" ref={blogFormRef}>
             <New
               state={state}
@@ -105,11 +105,9 @@ setUser(null)
           </Togglable>
           {blogs.map((blog) => {
          return <Blog key={blog._id} setBlogs={setBlogs} blogs={blogs} blog={blog} />
-         })}
-         
-         </div>
-          )}
-    </div>)
+         })}</div>
+      }
+    </div>
   }
 
 

@@ -60,7 +60,7 @@ const [errorMessage, setErrorMessage] = useState("");
       const blogFormRef = useRef();
     const handleSubmit = async (e) => {
       e.preventDefault();
-       await sendBlog({ ...state, user: user.id });
+      const resBlog = await sendBlog({ ...state, user: user.id });
    const blogs = await getAll();
    setBlogs(blogs);
    setState({

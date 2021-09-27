@@ -17,6 +17,7 @@ const getAll = async() => {
 
 const sendBlog = async (payload) => {
 
+console.log(token)
   const config = {
     headers: { Authorization: token },
   };
@@ -24,7 +25,7 @@ const sendBlog = async (payload) => {
   return request.data;
 };
 const putLikes = async (payload, id) => {
-  
+  console.log(token);
   const config = {
     headers: { Authorization: token },
   };
@@ -32,7 +33,7 @@ const putLikes = async (payload, id) => {
   return request.data;
 };
 const deleteRequest = async(id) => {
-  
+  console.log(token);
   const config = {
     headers: { Authorization: token },
   };

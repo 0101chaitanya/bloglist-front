@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useRef} from 'react'
+import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import {getAll, sendBlog,setToken} from './services/blogs'
 import login from './services/login';
@@ -16,7 +16,8 @@ const [errorMessage, setErrorMessage] = useState("");
 
     const [state, setState] = useState({
       title: "",
-       url: "",
+      user: "",
+      url: "",
       likes: "",
     });
 
@@ -57,61 +58,37 @@ const [errorMessage, setErrorMessage] = useState("");
       }
     }, []);
 
-      const blogFormRef = useRef();
     const handleSubmit = async (e) => {
       e.preventDefault();
-       await sendBlog({ ...state, user: user.id });
-   const blogs = await getAll();
-   setBlogs(blogs);
-   setState({
-     title: "",
-     url: "",
-     likes: "",
-   });
-   blogFormRef.current.toggleVisibility();
+      const resBlog = await sendBlog({ ...state, user: user.id });
+      setBlogs(blogs.concat(resBlog));
     };
-const LogOut = ()=>{
-  
-  window.localStorage.removeItem("userBlogData");
-setUser(null)
 
-}
 
   return (
     <div>
       <h2>blogs</h2>
-      {!user ? (
-        <div>
-          <Togglable buttonLabel="login">
-            <LoginForm
-              handleLogin={handleLogin}
-              username={username}
-              password={password}
-              setUsername={setUsername}
-              setPassword={setPassword}
-            />
-          </Togglable>
-        </div>
-      ) : (
-        <div>
-          <button onClick={LogOut}>Log out</button>
-          <p>{user.username} logged in</p>
-          <Togglable buttonLabel="add a new blog" ref={blogFormRef}>
-            <New
-              state={state}
-              handleSubmit={handleSubmit}
-              setState={setState}
-            />
-          </Togglable>
-          {blogs.map((blog) => {
-         return <Blog key={blog._id} setBlogs={setBlogs} blogs={blogs} blog={blog} />
-         })}
-         
-         </div>
-          )}
-    </div>)
-  }
+      {user === null && (
+        <Togglable buttonLabel="login">
+          <LoginForm
+            handleLogin={handleLogin}
+            username={username}
+            password={password}
+            setUsername={setUsername}
+            setPassword={setPassword}
+          />
+        </Togglable>
+      )}
 
+      {user !== null && <p>{user} logged in</p> && (
+        <Togglable buttonLabel="add blog">
+          <New  user={user} setBlogs={setBlogs} blogs={blogs} />
+        </Togglable>
+      )}
 
+      {user && blogs.map((blog) => <Blog key={blog.id} blog={blog} />)}
+    </div>
+  );
+}
 
 export default App

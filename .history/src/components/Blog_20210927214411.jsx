@@ -21,7 +21,7 @@ setBlogs(modifiedBlogs)
 
 const deleteMe = async()=>{
 
-   await deleteRequest(blog._id);
+  const deleted = await deleteRequest(blog._id);
 const id = blog._id;
 const modifiedBlogs = blogs.filter((blog) =>
   blog._id !== id

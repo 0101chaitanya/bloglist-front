@@ -5,8 +5,8 @@ const Blog = ({ blog ,setBlogs, blogs }) => {
   const [show ,setShow] = useState(false);
   
   const handlePut = async(e)=>{
-    
-await putLikes({
+    console.log(blog);
+const blogReceived = await putLikes({
   likes : blog.likes + 1
 },blog._id);
 
@@ -19,9 +19,9 @@ setBlogs(modifiedBlogs)
 
 }
 
-const deleteMe = async()=>{
+const deleteMe = ()=>{
 
-   await deleteRequest(blog._id);
+  const deleted = await deleteRequest(blog_id);
 const id = blog._id;
 const modifiedBlogs = blogs.filter((blog) =>
   blog._id !== id
@@ -38,6 +38,7 @@ setBlogs(modifiedBlogs);
    marginBottom: 5,
  };
   
+  console.log(blog)
   return (
     <div style={blogStyle}>
       <p>

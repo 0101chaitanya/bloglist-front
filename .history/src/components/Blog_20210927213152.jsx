@@ -6,7 +6,7 @@ const Blog = ({ blog ,setBlogs, blogs }) => {
   
   const handlePut = async(e)=>{
     
-await putLikes({
+const blogReceived = await putLikes({
   likes : blog.likes + 1
 },blog._id);
 
@@ -21,7 +21,7 @@ setBlogs(modifiedBlogs)
 
 const deleteMe = async()=>{
 
-   await deleteRequest(blog._id);
+  const deleted = await deleteRequest(blog._id);
 const id = blog._id;
 const modifiedBlogs = blogs.filter((blog) =>
   blog._id !== id

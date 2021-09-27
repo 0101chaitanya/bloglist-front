@@ -1,7 +1,8 @@
-import React from 'react';
+import React , {useState}from 'react';
+import { getAll, sendBlog, setToken } from "../services/blogs";
 
 
-const New = ({  state,handleSubmit,setState }) => {
+const New = React.forwardRef(({  state,handleSubmit,setState }) => {
 
     return (
       <form onSubmit={handleSubmit}>
@@ -54,6 +55,6 @@ const New = ({  state,handleSubmit,setState }) => {
         <button type="submit">Submit</button>
       </form>
     );
-};
+});
 
 export default New;

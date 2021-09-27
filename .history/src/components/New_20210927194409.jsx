@@ -1,7 +1,8 @@
-import React from 'react';
+import React , {useState}from 'react';
+import { getAll, sendBlog, setToken } from "../services/blogs";
 
 
-const New = ({  state,handleSubmit,setState }) => {
+const New = ({  state,handleSubmit }) => {
 
     return (
       <form onSubmit={handleSubmit}>

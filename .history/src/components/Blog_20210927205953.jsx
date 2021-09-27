@@ -1,34 +1,22 @@
 import React, {useState} from 'react'
-import {putLikes ,deleteRequest} from "../services/blogs";
-const Blog = ({ blog ,setBlogs, blogs }) => {
+import {putLikes} from "../services/blogs";
+const Blog = ({ blog ,setBlogs, blogos }) => {
 
   const [show ,setShow] = useState(false);
   
+
   const handlePut = async(e)=>{
-    
-await putLikes({
+    console.log(blog);
+const blogReceived = await putLikes({
   likes : blog.likes + 1
 },blog._id);
 
-const id = blog._id;
-const modifiedBlogs = blogs.map(blog => blog._id === id ? {
-  ...blog,
-  likes:blog.likes + 1} : blog) ;
-setBlogs(modifiedBlogs) 
+console.log(blogReceived);
+ 
+setBlogs({
+  blogs:blogos.concat(blogReceived), 
+})
   
-
-}
-
-const deleteMe = async()=>{
-
-   await deleteRequest(blog._id);
-const id = blog._id;
-const modifiedBlogs = blogs.filter((blog) =>
-  blog._id !== id
-    
-);
-setBlogs(modifiedBlogs); 
-
 }
  const blogStyle = {
    paddingTop: 10,
@@ -38,6 +26,7 @@ setBlogs(modifiedBlogs);
    marginBottom: 5,
  };
   
+  console.log(blog)
   return (
     <div style={blogStyle}>
       <p>
@@ -50,15 +39,11 @@ setBlogs(modifiedBlogs);
         <p>
           Likes :
           <button onClick={handlePut}>
-            {blog.likes}{" "}
-            <span role="img" aria-label="likes">
-              ❤️
-            </span>
+            {blog.likes} <span role="img">❤️</span>
           </button>
         </p>
         <p>Url: {blog.url}</p>
         <p>{blog.user.username}</p>
-        <button onClick={deleteMe}>Delete</button>
       </div>
       {/*   
   {   title,

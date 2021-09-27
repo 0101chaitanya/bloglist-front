@@ -17,28 +17,21 @@ const getAll = async() => {
 
 const sendBlog = async (payload) => {
 
+console.log(token)
   const config = {
     headers: { Authorization: token },
   };
   const request = await axios.post(baseUrl,{...payload}, config);
   return request.data;
 };
-const putLikes = async (payload, id) => {
-  
+const putLikes = async (payload) => {
+  console.log(token);
   const config = {
     headers: { Authorization: token },
   };
-  const request = await axios.put(baseUrl+"/"+ id, { ...payload }, config);
-  return request.data;
-};
-const deleteRequest = async(id) => {
-  
-  const config = {
-    headers: { Authorization: token },
-  };
-  const request = await axios.delete(baseUrl + "/" + id, config);
+  const request = await axios.put(baseUrl, { ...payload }, config);
   return request.data;
 };
 
 
-export  { getAll , setToken ,sendBlog ,putLikes, deleteRequest }
+export  { getAll , setToken ,sendBlog ,putLikes }
