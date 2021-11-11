@@ -6,7 +6,6 @@
     "@testing-library/user-event": "^12.6.3",
     "axios": "^0.21.1",
     "http-proxy-middleware": "^2.0.1",
-    "jsdom": "^17.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -16,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "npx react-scripts test --env=./tests/custom-test-env.js",
+    "test": "react-scripts test  --env=jsdom",
     "eject": "react-scripts eject",
     "eslint": "eslint ."
   },
@@ -42,8 +41,6 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.1",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "eslint-plugin-jest": "^24.4.2"
-  },
-  "testEnvironment": "./tests/custom-test-env.js"
+  }
 }

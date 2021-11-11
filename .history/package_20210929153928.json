@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "npx react-scripts test --env=./tests/custom-test-env.js",
+    "test": "react-scripts test  --env=jsdom",
     "eject": "react-scripts eject",
     "eslint": "eslint ."
   },
@@ -45,5 +45,5 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "eslint-plugin-jest": "^24.4.2"
   },
-  "testEnvironment": "./tests/custom-test-env.js"
+  "testEnvironment": "<rootDir>/tests/custom-test-env.js"
 }
